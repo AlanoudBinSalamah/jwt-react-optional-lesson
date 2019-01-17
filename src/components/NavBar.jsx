@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, changeForm, logout, getProducts }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="navbar-brand">Navbar</div>
@@ -17,9 +17,35 @@ const NavBar = ({ user }) => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <li className="nav-item active">
-            <div className="nav-link">Home</div>
-          </li>
+          {// if the user is not authenticated
+          !user && (
+            <React.Fragment>
+              <li
+                className="nav-item active"
+                onClick={() => changeForm("login")}
+              >
+                <div className="nav-link">Login</div>
+              </li>
+              <li
+                className="nav-item active"
+                onClick={() => changeForm("signup")}
+              >
+                <div className="nav-link">Signup</div>
+              </li>
+            </React.Fragment>
+          )}
+          {user && (
+            <React.Fragment>
+              <li className="nav-item active" onClick={() => logout()}>
+                <div className="nav-link">Logout</div>
+              </li>
+              <li className="nav-item active" onClick={() => getProducts()}>
+                <div className="nav-link">products</div>
+              </li>
+            </React.Fragment>
+          )
+          // if the user authenticated
+          }
         </ul>
       </div>
     </nav>

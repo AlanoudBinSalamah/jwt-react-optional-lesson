@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode";
 const tokenKey = "authToken";
 
 export function setJwt(token) {
-  localStorage.setItem(tokenKey, "authToken");
+  localStorage.setItem(tokenKey, token);
 }
 
 export function getJwt() {
@@ -26,6 +26,6 @@ export function getUser() {
 export default {
   setJwt,
   logout,
-  getCurrentUser,
+  getUser,
   getJwt
 };
